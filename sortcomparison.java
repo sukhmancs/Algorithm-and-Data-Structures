@@ -31,7 +31,6 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * Main class for Assignment 2
  * This class contains the main method to compare the sorting algorithms and the search algorithms
  * It also contains the printResults method to print the results for a given array size
  *
@@ -57,7 +56,7 @@ public class Main {
         for (int i = 0; i < 7; i++) {
             long averageExecutionTime = executionTimes[i] / 5; // Average over 5 runs
             long averageCompares = comparisonCounts[i] / 5; // Average over 5 runs
-            double basicStep = Assignment2_Start.calculateBasicStepTime(averageExecutionTime, averageCompares);
+            double basicStep = HelperClass.calculateBasicStepTime(averageExecutionTime, averageCompares);
             System.out.printf("%-10s %-15s %-15s %-10.1f%n", sortName++, averageExecutionTime, averageCompares, basicStep);
         }
         System.out.println("----------------------------------------------------------");
@@ -68,15 +67,15 @@ public class Main {
      */
     private static void compareSearchAlgorithms() {
         int arraySize = 100000;
-        int[] unsortedArray = Assignment2_Start.generateRandomArray(arraySize, 1000);
-        int[] sortedArray = Assignment2_Start.copyArray(unsortedArray);
+        int[] unsortedArray = HelperClass.generateRandomArray(arraySize, 1000);
+        int[] sortedArray = HelperClass.copyArray(unsortedArray);
 
         // Use Radix Sort to sort the array
-        Assignment2_Start.gSort(sortedArray);
+        HelperClass.gSort(sortedArray);
 
         // Perform linear and binary searches
-        long linearSearchTime = (long) Assignment2_Start.execTime(() -> Assignment2_Start.linearSearch(unsortedArray, -1));
-        long binarySearchTime = (long) Assignment2_Start.execTime(() -> Assignment2_Start.binarySearch(sortedArray, -1));
+        long linearSearchTime = (long) HelperClass.execTime(() -> HelperClass.linearSearch(unsortedArray, -1));
+        long binarySearchTime = (long) HelperClass.execTime(() -> HelperClass.binarySearch(sortedArray, -1));
         System.out.printf("For array size of %d:%n", arraySize);
         System.out.printf("Linear search took %d ns%n", linearSearchTime);
         System.out.printf("Binary search took %d ns%n", binarySearchTime);
@@ -106,45 +105,45 @@ public class Main {
         final int BOUND = 1000;
 
         for (int arraySize : SIZE_LIST) { // For each array size
-            int[] originalData = Assignment2_Start.generateRandomArray(arraySize, BOUND); // Generate a random array
+            int[] originalData = HelperClass.generateRandomArray(arraySize, BOUND); // Generate a random array
             for (int i = 0; i < RUNS; i++) {  // For each run
                 for (int j = 0; j < MAX_ALGORITHM; j++) {  // For each sorting method
                     int[] tempArray;
                     switch (j) {  // Perform the sorting method
                         case 0: // Quicksort
-                            tempArray = Assignment2_Start.copyArray(originalData);
-                            executionTimes[j] += (long) Assignment2_Start.execTime(() -> Assignment2_Start.aSort(tempArray));
-                            comparisonCounts[j] += Assignment2_Start.aSort(tempArray);
+                            tempArray = HelperClass.copyArray(originalData);
+                            executionTimes[j] += (long) HelperClass.execTime(() -> HelperClass.aSort(tempArray));
+                            comparisonCounts[j] += HelperClass.aSort(tempArray);
                             break;
                         case 1: // Selection Sort
-                            tempArray = Assignment2_Start.copyArray(originalData);
-                            executionTimes[j] += (long) Assignment2_Start.execTime(() -> Assignment2_Start.bSort(tempArray));
-                            comparisonCounts[j] += Assignment2_Start.bSort(tempArray);
+                            tempArray = HelperClass.copyArray(originalData);
+                            executionTimes[j] += (long) HelperClass.execTime(() -> HelperClass.bSort(tempArray));
+                            comparisonCounts[j] += HelperClass.bSort(tempArray);
                             break;
                         case 2: // Insertion Sort
-                            tempArray = Assignment2_Start.copyArray(originalData);
-                            executionTimes[j] += (long) Assignment2_Start.execTime(() -> Assignment2_Start.cSort(tempArray));
-                            comparisonCounts[j] += Assignment2_Start.cSort(tempArray);
+                            tempArray = HelperClass.copyArray(originalData);
+                            executionTimes[j] += (long) HelperClass.execTime(() -> HelperClass.cSort(tempArray));
+                            comparisonCounts[j] += HelperClass.cSort(tempArray);
                             break;
                         case 3: // Merge Sort
-                            tempArray = Assignment2_Start.copyArray(originalData);
-                            executionTimes[j] += (long) Assignment2_Start.execTime(() -> Assignment2_Start.dSort(tempArray));
-                            comparisonCounts[j] += Assignment2_Start.dSort(tempArray);
+                            tempArray = HelperClass.copyArray(originalData);
+                            executionTimes[j] += (long) HelperClass.execTime(() -> HelperClass.dSort(tempArray));
+                            comparisonCounts[j] += HelperClass.dSort(tempArray);
                             break;
                         case 4: // Bubble Sort
-                            tempArray = Assignment2_Start.copyArray(originalData);
-                            executionTimes[j] += (long) Assignment2_Start.execTime(() -> Assignment2_Start.eSort(tempArray));
-                            comparisonCounts[j] += Assignment2_Start.eSort(tempArray);
+                            tempArray = HelperClass.copyArray(originalData);
+                            executionTimes[j] += (long) HelperClass.execTime(() -> HelperClass.eSort(tempArray));
+                            comparisonCounts[j] += HelperClass.eSort(tempArray);
                             break;
                         case 5: // Shell Sort
-                            tempArray = Assignment2_Start.copyArray(originalData);
-                            executionTimes[j] += (long) Assignment2_Start.execTime(() -> Assignment2_Start.fSort(tempArray));
-                            comparisonCounts[j] += Assignment2_Start.fSort(tempArray);
+                            tempArray = HelperClass.copyArray(originalData);
+                            executionTimes[j] += (long) HelperClass.execTime(() -> HelperClass.fSort(tempArray));
+                            comparisonCounts[j] += HelperClass.fSort(tempArray);
                             break;
                         case 6: // Radix Sort
-                            tempArray = Assignment2_Start.copyArray(originalData);
-                            executionTimes[j] += (long) Assignment2_Start.execTime(() -> Assignment2_Start.gSort(tempArray));
-                            comparisonCounts[j] += Assignment2_Start.gSort(tempArray);
+                            tempArray = HelperClass.copyArray(originalData);
+                            executionTimes[j] += (long) HelperClass.execTime(() -> HelperClass.gSort(tempArray));
+                            comparisonCounts[j] += HelperClass.gSort(tempArray);
                             break;
                     }
                 }
@@ -158,7 +157,6 @@ public class Main {
 }
 
 /**
- * Helper class for Assignment 2
  * This class contains the sorting algorithms and methods to compare the algorithms
  * It also contains methods to generate random arrays, calculate the basic step time,
  * copy an array and swap elements in an array, methods to calculate the average of a set of numbers,
@@ -167,7 +165,7 @@ public class Main {
  *
  * @author Sukhmanjeet Singh, Student ID 000838215
  */
-class Assignment2_Start {
+class HelperClass {
 
     static long qSortCompares = 0;  // Left in for comparison purposes only
 
